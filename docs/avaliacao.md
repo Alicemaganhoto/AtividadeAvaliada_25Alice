@@ -1,9 +1,9 @@
 # Avaliação — Engenharia de Software
 **Sistema Integrado de Gestão de Farmácia — MVP Definido pelo Estudante**
 
-Aluno: *Preencha aqui*  
-RA: *Preencha aqui*  
-Data: *Preencha aqui*  
+Aluno: Alice dos Santos Maganhoto
+RA: 25000188  
+Data: 25/03/26
 
 ---
 
