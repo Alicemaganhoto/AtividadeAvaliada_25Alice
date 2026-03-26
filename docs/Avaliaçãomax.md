@@ -57,10 +57,10 @@ Liste os requisitos funcionais do seu MVP.
 # 🛡 4. Requisitos Não Funcionais (mínimo: 4)
 Liste os RNFs do sistema conforme seu MVP.
 
-**RNF01 —** = segurança: o sitema deve ter senha e login, evitando pessoas maliciosas.
-**RNF02 —** = comportamento: o tempo de resposta para consulta de estoque não deve ultrapassar 2 segundos.
-**RNF03 —** = disponibilidade: o sistema deve trabalhar de forma regular 99% do tempo no momento de funcionamento da rede.
-**RNF04 —** = usabilidade: a interface de vendas deve ser intuitiva, permitindo concluir uma operação em menos de 5 cliques.
+**RNF01 —** = segurança: o sistema deve exigir login e senha para impedir acesso de pessoas mal-intencionadas.
+**RNF02 —** = comportamento: a consulta de estoque não deve demorar mais do que 2 segundos.
+**RNF03 —** = disponibilidade: o sistema deve trabalhar de forma consistente 99% do tempo, no momento de funcionamento da rede.
+**RNF04 —** = usabilidade: a interface de vendas deve ser de fácil compreensão, permitindo concluir uma operação em menos de 5 cliques.
 
 (Adicione mais se quiser.)
 
@@ -73,55 +73,46 @@ Liste os RNFs do sistema conforme seu MVP.
 - pelo menos 3 includes
 - pelo menos 3 extends
 
-## **UC01 — Registrar Perda de Medicamento (Ator: Farmacêutico)
+## **UC01 — Registrar Perda de Medicamento (Ator - Farmacêutico)
 
-Descrição: Serve para registrar medicamentos que venceram ou que foram abertos e não podem mais ser vendidos.
+- O que faz: Utilizado para anotar no sistema quando um remédio venceu ou foi aberto e não pode mais ser vendido.
+## **UC02 — Transferência de Estoque entre Unidades (Ator: - Gerente)
 
- ## **UC02 — Transferir Estoque entre Unidades (Ator: Gerente)
+- O que faz: Realiza o transporte de produtos de uma farmácia para outra dentro da mesma rede.
 
-Descrição: Faz a movimentação de produtos de uma farmácia para outra da mesma rede.
+## **UC03 — Aplicar Desconto de Convênio (Ator: - Atendente)
 
- ## **UC03 — Aplicar Desconto de Convênio (Ator: Atendente)
+- Relacionamento: extend do UC01
+- O que faz: Aplica o desconto do convênio na hora da compra.
 
-Relacionamento: <<extend>> do UC01
+## **UC04 — Consultar Histórico de Compras do Cliente (Ator: - Atendente)
 
-Condição: Se o cliente tiver convênio ativo.
+- Relacionamento: extend do UC01
+- O que faz: Mostra o que o cliente já comprou antes.
 
-Descrição: Aplica automaticamente o desconto do convênio na compra.
+## **UC05 — Efetuar o Fechamento de Caixa (Ator: - Atendente)
 
-## **UC04 — Consultar Histórico de Compras do Cliente (Ator: Atendente)
+- O que faz: Ao terminar o turno, o atendente verifica todas as entradas no caixa, incluindo dinheiro e cartão.
 
-Relacionamento: <<extend>> do UC01
+## **UC06 — Baixar Conta a Receber (Ator - Financeiro)
 
-Condição: Se o cliente for identificado pelo CPF.
+- O que faz: Registra quando o cliente paga uma compra que ele tinha deixado pra pagar depois.
 
-Descrição: Permite ver as compras anteriores do cliente para facilitar o atendimento.
+## **UC07 — Efetuar Pagamento de Fornecedor (Ator - Financeiro)
 
-## **UC05 — Realizar Fechamento de Caixa (Ator: Atendente)
+- O que faz: Marca como “pago” uma conta que a farmácia tinha com algum fornecedor.
+## **UC08 — Consultar Histórico de Compras do Cliente (Ator - Atendente)
 
-Descrição: No final do turno, o atendente confere tudo que entrou no caixa (dinheiro, cartão e vendas a prazo).
+- Relacionamento: extend do UC01
+- O que faz: Mostra o que o cliente costuma comprar, ajudando a atender mais rápido e sugerir produtos.
 
-## **UC06 — Baixar Conta a Receber (Ator: Financeiro)
+## **UC09 — Fechamento de Caixa Diário (Ator - Atendente)
 
-Descrição: Registra quando o cliente paga uma dívida de uma compra feita anteriormente no fiado/prazo.
+- O que faz: Confere tudo do caixa no final do dia pra ver se tá tudo certo.
 
-## **UC07 — Efetuar Pagamento de Fornecedor (Ator: Financeiro)
+## **UC10 — Checar Movimentação de Estoque (Ator - Administrador)
 
-Descrição: Marca uma conta como paga no sistema, atualizando o status no setor de “Contas a Pagar”.
-
-## **UC08 — Consultar Histórico de Compras do Cliente (Ator: Atendente)
-
-Relacionamento: <<extend>> do UC01
-
-Descrição: Mostra o que o cliente costuma comprar, ajudando a atender mais rápido e sugerir produtos.
-
-## **UC09 — Fechamento de Caixa Diário (Ator: Atendente)
-
-Descrição: Conferência geral do caixa no final do dia, verificando dinheiro, cartões e valores registrados no sistema.
-
-## **UC10 — Checar Movimentação de Estoque (Ator: Administrador)
-
-Descrição: Mostra um relatório completo de tudo que entrou e saiu do estoque, quem fez a movimentação e o motivo.
+- O que faz: Mostra um relatório dizendo o que entrou, o que saiu, quem mexeu e o motivo.
 
 <img width="1394" height="741" alt="image" src="https://github.com/user-attachments/assets/eabaa0d1-7e74-4c4b-870a-c975b2a260a8" />
 
