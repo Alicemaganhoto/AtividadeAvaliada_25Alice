@@ -114,69 +114,103 @@ Liste os RNFs do sistema conforme seu MVP.
 
 - O que faz: Mostra um relatório dizendo o que entrou, o que saiu, quem mexeu e o motivo.
 
-<img width="1394" height="741" alt="image" src="https://github.com/user-attachments/assets/eabaa0d1-7e74-4c4b-870a-c975b2a260a8" />
+<img width="2866" height="373" alt="image" src="https://github.com/user-attachments/assets/9fc9adab-3140-4fcc-8f6a-8e0d66b90252" />
+
 
 ---
 
 # 6. Documentação dos Casos de Uso
 Para **cada caso de uso**, utilize o template abaixo:
 ---
-## **UC01 — Registrar Perda de Medicamento**
-Ator(es): Farmacêutico.
-Descrição: Registro de produtos que saíram do estoque por vencimento ou avaria.
-Pré-condições: Usuário logado e produto cadastrado no sistema.
-Pós-condições: Estoque atualizado com a baixa do item e motivo registrado.
- 
 
-Fluxo Principal
-O Farmacêutico acessa o módulo de estoque e seleciona "Registrar Perda".
+## **UC01 — Registrar Perda de Medicamento
 
-O sistema solicita a identificação do produto (código de barras ou nome).
+Ator(es): Farmacêutico
+Descrição: Serve para registrar no sistema quando um remédio venceu ou foi aberto e não pode mais ser vendido.
+Pré-condições: O remédio já precisa estar registrado no sistema
+Pós-condições: A perda fica registrada e o estoque diminui automaticamente.
 
-O Farmacêutico informa a quantidade e o motivo (Ex: Vencimento).
+<img width="480" height="395" alt="image" src="https://github.com/user-attachments/assets/c96227bb-b803-4041-a9f6-d72c37483276" />
 
-O sistema confirma a operação e abate o saldo do estoque.
+## **UC02 — Transferir Estoque entre Unidades
 
-Fluxos Alternativos / Exceções
-EX01 — Produto não encontrado: O sistema alerta que o código é inválido.
+Ator(es): Gerente
+Descrição: Serve para o gerente enviar produtos de uma farmácia para outra da rede.
+Pré-condições: O produto precisa ter quantidade disponível no estoque.
+Pós-condições: O sistema registra a transferência e atualiza o estoque das duas unidades.
 
-EX02 — Quantidade maior que estoque: O sistema impede a baixa negativa.
+<img width="449" height="287" alt="image" src="https://github.com/user-attachments/assets/118b2067-76e6-4a4a-91ef-555433dae540" />
 
-UC02 — Transferir Estoque entre Unidades
-Ator(es): Gerente.
-Descrição: Movimentação física e lógica de produtos entre filiais da rede.
-Pré-condições: Saldo disponível na unidade de origem e unidade de destino ativa.
-Pós-condições: Saldo diminuído na origem e registrado como "em trânsito" para o destino.
+## **UC03 —Aplicar Desconto de Convênio
 
-Fluxo Principal
-O Gerente seleciona a unidade de destino.
+Ator(es): Atendente
+Descrição: Aplica o desconto do convênio na compra do cliente, caso ele tenha convênio ativo.
+Pré-condições: O cliente precisa informar o CPF e ter convênio válido.
+Pós-condições: O sistema aplica o desconto e atualiza o valor da compra.
 
-O Gerente informa os itens e quantidades para transferência.
+<img width="347" height="287" alt="image" src="https://github.com/user-attachments/assets/09b415b4-bb20-419c-ad8b-e17c95331cef" />
 
-O sistema valida a disponibilidade do estoque local.
+## **UC04 —Consultar Histórico de Compras do Cliente
 
-O sistema gera a guia de transporte e atualiza o estoque.
+Ator(es): Atendente
+Descrição: Permite ver o que o cliente já comprou antes, ajudando a atender mais rápido.
+Pré-condições: O cliente precisa ser identificado pelo CPF.
+Pós-condições: O histórico aparece na tela para consulta.
 
-Fluxos Alternativos / Exceções
-EX01 — Unidade destino inexistente: O sistema solicita correção do destino.
+<img width="815" height="419" alt="image" src="https://github.com/user-attachments/assets/61fbfd47-eb1a-4359-a796-f151710f3de3" />
 
-UC03 — Aplicar Desconto de Convênio
-Ator(es): Atendente.
-Descrição: Aplicação de descontos automáticos baseados em parcerias.
-Pré-condições: Venda em andamento (UC00) e cliente identificado.
-Pós-condições: Valor total da venda recalculado com o desconto.
+## **UC05 — Efetuar Fechamento de CaixaAtor(es): Atendente
 
-Fluxo Principal
-Durante a venda, o Atendente seleciona a opção "Convênio".
+Descrição: No fim do turno, o atendente confere o dinheiro e cartão para fechar o caixa.
+Pré-condições: As vendas do turno precisam estar registradas no sistema.
+Pós-condições: O caixa é fechado e o sistema salva os valores.
 
-O sistema verifica o tipo de convênio vinculado ao cliente.
+<img width="329" height="287" alt="image" src="https://github.com/user-attachments/assets/91b0a5ba-5934-433d-a0a3-d812769d0507" />
 
-O sistema aplica o percentual de desconto sobre os itens permitidos.
+## **UC06 — Baixar Conta a Receber
 
-O valor total é atualizado na tela de venda.
+Ator(es): Financeiro
+Descrição: Registra quando o cliente paga uma dívida antiga.
+Pré-condições: A dívida precisa estar registrada no sistema como pendente.
+Pós-condições: A conta muda para “paga” e fica registrada como quitada.
 
-Relacionamentos
-Extend: UC00 (Realizar Venda) — Condição: Cliente possui convênio ativo.
+<img width="428" height="449" alt="image" src="https://github.com/user-attachments/assets/fdc7539b-2dbe-4293-9f4b-528ad91aaada" />
+
+## **UC07 — Efetuar Pagamento de Fornecedor
+
+Ator(es): Financeiro
+Descrição: Serve para marcar no sistema que a farmácia pagou um fornecedor.
+Pré-condições: A conta do fornecedor precisa estar cadastrada no sistema.
+Pós-condições: A conta passa a aparecer como “paga”.
+
+<img width="413" height="449" alt="image" src="https://github.com/user-attachments/assets/204c1c37-0d2d-4e08-9cd6-0dd29eff9816" />
+
+## **UC08 — Consultar Histórico de Compras (Sugestões)
+
+Ator(es): Atendente
+Descrição: Mostra o que o cliente costuma comprar para ajudar no atendimento.
+Pré-condições: O cliente precisa estar identificado no sistema (CPF).
+Pós-condições: O sistema exibe as compras mais frequentes do cliente.
+
+<img width="546" height="341" alt="image" src="https://github.com/user-attachments/assets/8aba1262-1bc1-43ac-b978-dc45ea09d55d" />
+
+## **UC09 —Fechamento de Caixa Diário
+
+Ator(es): Atendente
+Descrição: No fim do dia, o atendente confere o caixa e fecha tudo no sistema.
+Pré-condições: As vendas do dia precisam estar registradas.
+Pós-condições: O sistema salva o fechamento diário e gera o registro do caixa.
+
+<img width="312" height="287" alt="image" src="https://github.com/user-attachments/assets/919e9df6-f252-4ab2-a3e1-ec631abbd74a" />
+
+## **UC10 — Checar Movimentação de Estoque
+
+Ator(es): Administrador
+Descrição: Permite ver tudo que entrou e saiu do estoque, incluindo quem fez a alteração e o motivo.
+Pré-condições: O administrador precisa ter acesso ao sistema.
+Pós-condições: O relatório do estoque é exibido para consulta.
+
+<img width="521" height="341" alt="image" src="https://github.com/user-attachments/assets/1d9b1b2c-e937-4422-bf9c-da522ac9d0aa" />
 
 ---
 
